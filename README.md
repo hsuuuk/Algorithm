@@ -1,7 +1,7 @@
 Swift 알고리즘 풀이
-## 프로그래머스
+# 프로그래머스
 
-### Lv.1
+## Lv.1
 - [달리기 경주](https://github.com/hsuuuk/Algorithm/blob/main/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/1/178871.%E2%80%85%EB%8B%AC%EB%A6%AC%EA%B8%B0%E2%80%85%EA%B2%BD%EC%A3%BC/%EB%8B%AC%EB%A6%AC%EA%B8%B0%E2%80%85%EA%B2%BD%EC%A3%BC.swift)
 - [추억 점수](https://github.com/hsuuuk/Algorithm/blob/main/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/1/176963.%E2%80%85%EC%B6%94%EC%96%B5%E2%80%85%EC%A0%90%EC%88%98/%EC%B6%94%EC%96%B5%E2%80%85%EC%A0%90%EC%88%98.swift)
 - [덧칠하기](https://github.com/hsuuuk/Algorithm/blob/main/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/1/161989.%E2%80%85%EB%8D%A7%EC%B9%A0%ED%95%98%EA%B8%B0/%EB%8D%A7%EC%B9%A0%ED%95%98%EA%B8%B0.swift)
