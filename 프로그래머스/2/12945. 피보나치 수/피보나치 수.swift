@@ -1,4 +1,9 @@
 func solution(_ n:Int) -> Int {
+    
+    if n < 2 {
+        return n
+    }
+    
     var fibo = [0, 1]
     
     for i in 2...n {
