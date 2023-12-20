@@ -1,22 +1,22 @@
 import Foundation
 
 func solution(_ elements:[Int]) -> Int {
-    var ans = Set<Int>()
+    var set = Set<Int>()
     
-    for i in 0..<elements.count {
+    for i in elements.indices {
         var sum = 0
         
-        for j in 0..<elements.count {
+        for j in elements.indices {
             var index = i + j
             
             if index >= elements.count {
-                index = index - elements.count
+                index -= elements.count
             }
             
             sum += elements[index]
-            ans.insert(sum)
+            set.insert(sum)
         }
     }
     
-    return ans.count
+    return set.count
 }
