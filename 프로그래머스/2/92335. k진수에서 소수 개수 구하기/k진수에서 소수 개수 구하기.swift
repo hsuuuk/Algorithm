@@ -1,21 +1,24 @@
 import Foundation
 
-func isPrime(_ n: Int) -> Bool {
-    if n < 2 {
-        return false
-    }
+func solution(_ n:Int, _ k:Int) -> Int {
+    let radix = String(n, radix: k)
+    var arr = radix.split(separator: "0").map { Int(String($0))! }.filter { $0 != 1 }
     
-    for i in stride(from: 2, through: sqrt(Double(n)), by: 1) {
-        if n % Int(i) == 0 {
-            return false
+    var count = 0
+    for num in arr {
+        var isPrime = true
+        
+        for i in stride(from: 2, through: Int(sqrt(Double(num))), by: 1) {
+            if num % i == 0 {
+                isPrime = false
+                break
+            }
+        }
+        
+        if isPrime {
+            count += 1
         }
     }
     
-    return true
-}
-
-func solution(_ n:Int, _ k:Int) -> Int {
-    let radix = String(n, radix: k)
-    let arr = radix.split(separator: "0").filter { isPrime(Int($0) ?? 0) }
-    return arr.count
+    return count
 }
