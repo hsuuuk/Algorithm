@@ -1,35 +1,33 @@
 import Foundation
 
 func solution(_ s:String) -> Int {
-    var s = s.map{ String($0) }
-    var count = 0
-    var ans = 0
-    
-    while count < s.count {
-        count += 1
-        
+    var arr = s.map { String($0) }
+    var cnt = 0
+
+    for _ in 0..<arr.count {
         var stack = ""
-        
-        for cha in s {
-            if let last = stack.last {
-                if (last == "[" && cha == "]") ||
-                   (last == "{" && cha == "}") ||
-                   (last == "(" && cha == ")") {
-                    stack.removeLast()
-                    continue
-                }
+
+        for item in arr {
+            
+            guard let last = stack.last else {
+                stack.append(item)
+                continue
             }
             
-            stack.append(cha)
-        }
-        print("stack: \(stack)")
-        if stack.isEmpty {
-            ans += 1
+            if (last == "(" && item == ")") || (last == "{" && item == "}") || (last == "[" && item == "]") {
+                stack.removeLast()
+            } else {
+                stack.append(item)
+            }
         }
         
-        let first = s.removeFirst()
-        s.append(first)
+        if stack.isEmpty {
+            cnt += 1
+        }
+        
+        let first = arr.removeFirst()
+        arr.append(first)
     }
     
-    return ans
+    return cnt
 }
