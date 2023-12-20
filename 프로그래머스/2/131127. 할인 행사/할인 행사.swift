@@ -1,38 +1,39 @@
 import Foundation
 
 func solution(_ want:[String], _ number:[Int], _ discount:[String]) -> Int {
-    var wantDic = [String: Int]()
-    for i in 0..<want.count {
-        wantDic[want[i]] = number[i]
-    }
+    var dayCnt = 0
     
+    var item = [String: Int]()
+    for i in 0..<want.count {
+        item[want[i]] = number[i]
+    }
+  
+    var discount = discount
     var discountDic = [String: Int]()
     for i in 0...9 {
         discountDic[discount[i], default: 0] += 1
     }
     
-    var ans = 0
-    
-    for i in 0..<discount.count-9 {
-        if i != 0 {
-            discountDic[discount[i-1]]! -= 1
-            discountDic[discount[i+9], default: 0] += 1
+    for i in 0...discount.count-10 {
+        if check(item, discountDic) {
+            dayCnt +=  1
         }
-        
-        if check(wantDic, discountDic) {
-            ans += 1
+
+        if i+10 < discount.count {
+            discountDic[discount[i]]! -= 1
+            discountDic[discount[i+10], default: 0] += 1
         }
     }
     
-    return ans
+    return dayCnt
 }
 
-func check(_ a: [String: Int], _ b: [String: Int]) -> Bool {
-    for item in a {
-        let name = item.key
+func check(_ dic1: [String: Int], _ dic2: [String: Int]) -> Bool {
+    for item in dic1 {
+        let key = item.key
         let count = item.value
         
-        if b[name, default: 0] < count {
+        if dic2[key, default: 0] != count {
             return false
         }
     }
