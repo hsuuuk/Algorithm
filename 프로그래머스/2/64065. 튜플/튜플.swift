@@ -1,26 +1,22 @@
 import Foundation
 
 func solution(_ s:String) -> [Int] {
-    var answer = [Int]()
+    var str = s.replacingOccurrences(of: "{", with: "").replacingOccurrences(of: "}}", with: "")
+    var arr = str.components(separatedBy: "},")
     
-    var s = s
-    s = s.replacingOccurrences(of: "{", with: "")
-    let tupleStrings = s.components(separatedBy: "},").map({$0.replacingOccurrences(of: "}", with: "")})
-    
-    let tuples = tupleStrings.map { tupleString -> [String] in
-        tupleString.components(separatedBy: ",")
+    var arr2 = [[Int]]()
+    for item in arr {
+        let a = item.split(separator: ",").map { Int(String($0))! }
+        arr2.append(a)
     }
+    arr2.sort { $0.count < $1.count }
     
-    let sortedTuples = tuples.sorted(by: { $0.count < $1.count })
-    
-    sortedTuples.forEach { tuple in
-        tuple.forEach { num in
-            let number = Int(num)!
-            if !answer.contains(number) {
-                answer.append(number)
-            }
-        }
+    var nums = [Int]()
+    for item in arr2 {
+        var a = item
+        a.removeAll(where: { nums.contains($0) })
+        nums.append(a.first!)
     }
-    
-    return answer
+
+    return nums
 }
