@@ -1,42 +1,41 @@
 func solution(_ str1:String, _ str2:String) -> Int {
-    let str1cha = Array(str1)
-    let str2cha = Array(str2)
+    var chaArr1 = Array(str1)
+    var chaArr2 = Array(str2)
     
-    var str1arr = [String]()
-    var str2arr = [String]()
+    var arr1 = [String]()
+    var arr2 = [String]()
     
-    // 두글자씩 합치기
-    for i in 0..<str1cha.count-1 {
-        if str1cha[i].isLetter && str1cha[i+1].isLetter {
-            str1arr.append("\(str1cha[i].lowercased())\(str1cha[i+1].lowercased())")
+    for i in 0..<chaArr1.count-1 {
+        if chaArr1[i].isLetter && chaArr1[i+1].isLetter {
+            arr1.append(chaArr1[i].lowercased() + chaArr1[i+1].lowercased())
         }
     }
-    for i in 0..<str2cha.count-1 {
-        if str2cha[i].isLetter && str2cha[i+1].isLetter {
-            str2arr.append("\(str2cha[i].lowercased())\(str2cha[i+1].lowercased())")
+    for i in 0..<chaArr2.count-1 {
+        if chaArr2[i].isLetter && chaArr2[i+1].isLetter {
+            arr2.append(chaArr2[i].lowercased() + chaArr2[i+1].lowercased())
         }
     }
-    
-    var allCnt = str1arr.count + str2arr.count
+
     // 교집합
+    var sumCnt = arr1.count + arr2.count
     var crossCnt = 0
-    for i in str1arr.indices {
-        for j in str2arr.indices {
-            if str1arr[i] == str2arr[j] {
+    for i in 0..<arr1.count {
+        for j in 0..<arr2.count {
+            if arr1[i] == arr2[j] {
                 crossCnt += 1
-                str2arr.remove(at: j)
+                arr2.remove(at: j)
                 break
             }
         }
     }
     
-    // 합집합 = A + B - A 교집합 B
-    allCnt = allCnt - crossCnt
-
-    // answer
-    if allCnt == 0 {
+    // 합집합
+    sumCnt -= crossCnt
+    
+    // 결과
+    if sumCnt == 0 {
         return 65536
     } else {
-        return Int(Double(crossCnt)/Double(allCnt)*65536)
+        return Int(Double(crossCnt) / Double(sumCnt) * 65536)
     }
 }
