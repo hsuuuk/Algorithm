@@ -1,30 +1,30 @@
 import Foundation
 
 func solution(_ progresses:[Int], _ speeds:[Int]) -> [Int] {
-    var days = [Int]()
-    var cnt = 0
     var p = progresses
     var s = speeds
+    var functions = [Int]()
     
     while p.count > 0 {
-        for i in p.indices {
+        for i in 0..<p.count {
+            print("[i: \(i)]")
             p[i] += s[i]
         }
         print("[p: \(p)]")
-        if p.first! >= 100 {
-            while p.first! >= 100 {
-                cnt += 1
-                
+        
+        if p[0] >= 100 {
+            var cnt = 0
+            while p[0] >= 100 {
                 p.removeFirst()
                 s.removeFirst()
+                cnt += 1
                 
                 if p.count == 0 { break }
             }
             
-            days.append(cnt)
-            cnt = 0
+            functions.append(cnt)
         }
     }
-    
-    return days
+
+    return functions
 }
