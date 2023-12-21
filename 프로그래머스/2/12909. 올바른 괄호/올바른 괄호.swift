@@ -15,6 +15,6 @@ func solution(_ s:String) -> Bool {
             }
         }
     }
-
+    
     return stack == 0 ? true : false
 }
